@@ -1,11 +1,16 @@
-<html>
-    <body>
 
-        <?php 
-            $geradenwoord = $_POST["woord"]; 
-            echo "Je hebt $geradenwoord geraden";
+<?php 
+    if(isset($_POST['val'])) {
+        $val = ($_POST['val']);
         
-        ?>
+    } else {
+        echo $val = "Geen waarde";
+    }
 
-    </body>
-</html>
+    $val = "Geraden woord: ".$val;
+    echo "$val";
+
+?>
+
+
+ 
