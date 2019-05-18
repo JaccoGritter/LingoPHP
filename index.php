@@ -22,7 +22,7 @@
 <input type="text" name="woord" maxlength="5" id="woord">
 <button type="submit" id="mybutton">Raad!</button>
 
-<p>Trouwens, de teststring = <?php echo "$teststring" ?>, dat je het weet!</p>
+<p>Trouwens, de teststring is <?php echo "$teststring" ?>, dat je het weet!</p>
 
 <script>
 $(document).ready(function() {
