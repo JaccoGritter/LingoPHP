@@ -12,11 +12,17 @@
 </head>
 
 <body>
+
+<?php
+    $teststring = "Dit is een test!";
+
+?>
        
 <p>Raad het woord:</p> 
 <input type="text" name="woord" maxlength="5" id="woord">
 <button type="submit" id="mybutton">Raad!</button>
 
+<p>Trouwens, de teststring = <?php echo "$teststring" ?>, dat je het weet!</p>
 
 <script>
 $(document).ready(function() {
