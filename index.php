@@ -7,45 +7,55 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
-    <title>Document</title>
+    <title>Lingo</title>
+
+    <script>
+
+    // $(function(){
+
+    //     $("form").submit(function(){
+    //         $("#test").html("JS triggered");
+    //         alert("js");
+    //     })
+
+    // });
+
+    </script>
 
 </head>
 
 <body>
 
 <?php
-    $teststring = "Dit is een test!";
+    $teRadenWoord = "hotel";
+    $tussenwoord = "pp";
+?>
+
+<p>Raad het woord:</p> 
+
+<form method="POST" action="">
+    <input type="text" name="woord" maxlength="5" id="woord">
+    <input type="submit" id="raadButton" value="Raad!">
+</form>
+
+<p id="test">Hallo</p>
+
+<p>Klik 'Raad!' of druk op 'enter'</p>
+
+<?php 
+
+    $geradenWoord = $_POST["woord"];
+    $tussenwoord = $tussenWoord.$geradenWoord;
+
 
 ?>
-       
-<p>Raad het woord:</p> 
-<input type="text" name="woord" maxlength="5" id="woord">
-<button type="submit" id="mybutton">Raad!</button>
 
-<p>Trouwens, de teststring is <?php echo "$teststring" ?>, dat je het weet!</p>
-
-<script>
-$(document).ready(function() {
-
-    $("#mybutton").on("click", function() {
-        let woord = $("#woord").val();
-        $.ajax({
-            url: "raadwoord.php",
-            method: "POST",
-            dataType: "text",
-            data: {
-                val: woord
-            }
-        }).done(function(returnedWoord){
-            console.log(returnedWoord)
-        })
-
-    })
+<p>Trouwens, de teststring is <?php echo "$teRadenWoord" ?>, dat je het weet!</p><br>
+<p>Geraden woord: <?php echo "$geradenWoord" ?> </p>
+<p>Tussenwoord is: <?php echo "$tussenwoord" ?>
 
 
-})
 
-</script>
 
 </body>
 
