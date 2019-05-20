@@ -1,13 +1,7 @@
 window.onload = function() {
-    init();
-}
-
-let turns;
-
-function init() {
-    document.getElementById("raadButton").addEventListener("click", checkWoord);
+    document.getElementById("raadButton").addEventListener("click", raadWoord);
     buildGrid(5);
-    turns = 0;    // keep track of number of turns
+    startSpel();
 }
 
 function buildGrid(n) {
@@ -21,16 +15,41 @@ function buildGrid(n) {
     }
 }
 
-function checkWoord() {
-    if (turns>5) return;                  // can't play on when game has ended
+function startSpel() {               // sets a random word, turns = 0
+    var xmlhttp = new XMLHttpRequest();
+    // xmlhttp.onreadystatechange = function() {
+    //         if (this.readyState == 4 && this.status == 200) {  
+    //             var myObj = JSON.parse(this.responseText);
+    //         }
+    //     };
+        xmlhttp.open("GET", "bedenkwoord.php", true);
+        xmlhttp.send();
+}
+
+// function getWoord() {               // gets the word to be guessed
+//     var xmlhttp = new XMLHttpRequest();
+//     xmlhttp.onreadystatechange = function() {
+//             if (this.readyState == 4 && this.status == 200) {  
+//                 console.log(this.responseText);
+//                 return this.responseText;
+//             }
+//         };
+//         xmlhttp.open("GET", "getword.php", true);
+//         xmlhttp.send();
+// }
+
+function raadWoord() {
+    // if (turns>5) return;                  // can't play on when game has ended
     var geraden = document.getElementById("woord").value;
-    if (geraden.length != 5) return;     // submitted word must contain 5 letters
-    turns++;
+    // if (geraden.length != 5) return;     // submitted word must contain 5 letters
+    // turns++;
     document.getElementById("woord").value = "";
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {  
-                updateScreen(this.responseText.trim(), geraden);
+            if (this.readyState == 4 && this.status == 200) { 
+                //console.log(this.responseText); 
+                let myObj = JSON.parse(this.responseText);
+                updateScreen(myObj.feedback.trim(), geraden, myObj.turns, myObj.gameOver, myObj.won);
             }
         };
         xmlhttp.open("GET", "raadwoord.php?q=" + geraden, true);
@@ -38,10 +57,9 @@ function checkWoord() {
     
 }
 
-function updateScreen(feedback, geraden) {
+function updateScreen(feedback, geraden, turns, gameOver, won) {
     let ballrow = document.getElementById("output").childNodes;
     let column = ballrow[turns-1].childNodes;
-    console.log("Beurten: " + turns);
 
     for (let i = 0; i < 5; i++) {
         let status = feedback.charAt(i);
@@ -50,11 +68,12 @@ function updateScreen(feedback, geraden) {
         if (status == "2" ) column[i].style.backgroundColor = "#bdf22e";
     }
 
-    if (feedback=="22222") {
+    if (won) {
         document.getElementById("resultText").innerHTML = "<h3>Geraden! Gefeliciteerd!</h3>";
-        turns = 6;
+        
     }
-    if (turns==5) {
-        document.getElementById("resultText").innerHTML = "<h3>Game Over....</h3>";
+    if (gameOver & won == false) {
+        //console.log(getWoord());
+        document.getElementById("resultText").innerHTML = "<h3> Game Over... </h3>";
     }
 }

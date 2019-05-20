@@ -1,7 +1,18 @@
 
 <?php 
+
+    session_start();
+
+    $myObj = new stdClass();
+
+    $myObj->gameOver = false;
+    $myObj->won = false;
+    $myObj->turns = 0;
+    $myObj->feedback = "00000";
+
+
     // put the teRadenWoord in an array for easier comparison with geraden woord
-    $teRadenWoordArray = str_split("hotel");
+    $teRadenWoordArray = str_split($_SESSION["teradenwoord"]);
 
     // feedback will be the string to be sent back and represents check results
     // 0 = character not in word
@@ -9,6 +20,9 @@
     // 2 = character in word and on right place
     $feedback = "00000";
     $feedbackArray = str_split($feedback);
+
+    // increase turns
+    $_SESSION["beurt"] += 1;
 
     // get $q from calling page (= geraden woord)
     $q = $_REQUEST["q"];
@@ -35,7 +49,18 @@
     
     $feedback = join($feedbackArray); 
     
-    echo $feedback;
+    if ($feedback == "22222") {
+        $myObj->gameOver = true;
+        $myObj->won = true;
+    }
+
+    if ($_SESSION["beurt"] >= 5) $myObj->gameOver = true;
+
+    $myObj->feedback = $feedback;
+    $myObj->turns = $_SESSION["beurt"];
+    $myJSON = json_encode($myObj) ;
+
+    echo $myJSON;
 
 ?>
 
