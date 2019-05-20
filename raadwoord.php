@@ -47,6 +47,7 @@
         }
     }
     
+    // put the feedback array in a string
     $feedback = join($feedbackArray); 
     
     if ($feedback == "22222") {

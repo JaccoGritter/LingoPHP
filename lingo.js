@@ -17,39 +17,19 @@ function buildGrid(n) {
 
 function startSpel() {               // sets a random word, turns = 0
     var xmlhttp = new XMLHttpRequest();
-    // xmlhttp.onreadystatechange = function() {
-    //         if (this.readyState == 4 && this.status == 200) {  
-    //             var myObj = JSON.parse(this.responseText);
-    //         }
-    //     };
         xmlhttp.open("GET", "bedenkwoord.php", true);
         xmlhttp.send();
 }
 
-// function getWoord() {               // gets the word to be guessed
-//     var xmlhttp = new XMLHttpRequest();
-//     xmlhttp.onreadystatechange = function() {
-//             if (this.readyState == 4 && this.status == 200) {  
-//                 console.log(this.responseText);
-//                 return this.responseText;
-//             }
-//         };
-//         xmlhttp.open("GET", "getword.php", true);
-//         xmlhttp.send();
-// }
-
 function raadWoord() {
-    // if (turns>5) return;                  // can't play on when game has ended
     var geraden = document.getElementById("woord").value;
-    // if (geraden.length != 5) return;     // submitted word must contain 5 letters
-    // turns++;
     document.getElementById("woord").value = "";
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) { 
                 //console.log(this.responseText); 
                 let myObj = JSON.parse(this.responseText);
-                updateScreen(myObj.feedback.trim(), geraden, myObj.turns, myObj.gameOver, myObj.won);
+                updateScreen(myObj.feedback, geraden, myObj.turns, myObj.gameOver, myObj.won);
             }
         };
         xmlhttp.open("GET", "raadwoord.php?q=" + geraden, true);

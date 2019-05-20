@@ -18,6 +18,7 @@ session_start();
 
     body {
         font-family: arial, sans-serif;
+        font-size: 1.3rem;
         background-color: mediumaquamarine;
     }
 
@@ -27,14 +28,14 @@ session_start();
     }
 
     #output div div {
-        width: 35px;
-        height: 35px;
-        line-height: 35px;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
         background-color:khaki;
         display: inline-block;
         padding: 3px;
         margin: 3px;
-        border-radius: 10px;
+        border-radius: 12px;
         text-align: center;
     }
 
@@ -52,7 +53,7 @@ session_start();
 
     <h1> L I N G O </h1>
 
-    <p>Raad het woord:</p>
+    <h3>Raad het woord:</h3>
 
     <input type="text" name="woord" maxlength="5" id="woord" autocomplete="off">
     <button id="raadButton">Raad!</button>
