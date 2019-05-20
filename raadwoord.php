@@ -19,7 +19,7 @@
     //put letters of $q in an array named $qarray
     $qarray = str_split($q);
 
-    // check if teradenwoord contains letters
+    // check if teradenwoord contains letters from guessed word
     for ($i = 0; $i < 5; $i++) {
         for ($j = 0; $j < 5; $j++) {
             if ($qarray[$i] == $teRadenWoordArray[$j]) $feedbackArray[$i] = "1"; 
@@ -33,7 +33,8 @@
         }
     }
     
-    $feedback = join("", $feedbackArray); 
+    $feedback = join($feedbackArray); 
+    
     echo $feedback;
 
 ?>
