@@ -15,11 +15,13 @@
     #output div div {
         width: 30px;
         height: 30px;
+        line-height: 30px;
         background-color: yellow;
         display: inline-block;
         padding: 3px;
         margin: 3px;
         border-radius: 10px;
+        text-align: center;
     }
 
 </style>

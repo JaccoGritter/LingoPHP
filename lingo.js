@@ -45,7 +45,7 @@ function updateScreen(feedback, geraden) {
     for (let i = 0; i < 5; i++) {
         let status = feedback.charAt(i);
         column[i].innerText = geraden.charAt(i);
-        if (status == "1" ) column[i].style.backgroundColor = "orange";
-        if (status == "2" ) column[i].style.backgroundColor = "green";
+        if (status == "1" ) column[i].style.backgroundColor = "#ffb50a";
+        if (status == "2" ) column[i].style.backgroundColor = "#bdf22e";
     }
 }
