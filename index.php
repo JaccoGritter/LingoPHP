@@ -9,53 +9,47 @@
 
     <title>Lingo</title>
 
-    <script>
-
-    // $(function(){
-
-    //     $("form").submit(function(){
-    //         $("#test").html("JS triggered");
-    //         alert("js");
-    //     })
-
-    // });
-
-    </script>
 
 </head>
 
 <body>
 
-<?php
-    $teRadenWoord = "hotel";
-    $tussenwoord = "pp";
-?>
-
 <p>Raad het woord:</p> 
 
-<form method="POST" action="">
-    <input type="text" name="woord" maxlength="5" id="woord">
-    <input type="submit" id="raadButton" value="Raad!">
-</form>
+<input type="text" name="woord" maxlength="5" id="woord">
+<button id="raadButton">Raad!</button>
 
-<p id="test">Hallo</p>
-
-<p>Klik 'Raad!' of druk op 'enter'</p>
-
-<?php 
-
-    $geradenWoord = $_POST["woord"];
-    $tussenwoord = $tussenWoord.$geradenWoord;
+<div id="output"></div>
 
 
-?>
+<script>
 
-<p>Trouwens, de teststring is <?php echo "$teRadenWoord" ?>, dat je het weet!</p><br>
-<p>Geraden woord: <?php echo "$geradenWoord" ?> </p>
-<p>Tussenwoord is: <?php echo "$tussenwoord" ?>
+document.getElementById("raadButton").addEventListener("click", checkWoord);
 
+function checkWoord() {
+    var geraden = document.getElementById("woord").value;
+    document.getElementById("woord").value = "";
+    //document.getElementById("test").innerHTML = geraden;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                updateScreen(this.responseText);
+            }
+        };
+        xmlhttp.open("GET", "raadwoord.php?q=" + geraden, true);
+        xmlhttp.send();
+    
+}
 
+function updateScreen(feedback) {
+    //document.getElementById("output").innerHTML = feedback;
+    var node = document.createElement("P");                 
+    var textnode = document.createTextNode(feedback);        
+    node.appendChild(textnode);        
+    document.getElementById("output").appendChild(node); 
+}
 
+</script>
 
 </body>
 
