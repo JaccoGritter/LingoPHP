@@ -12,15 +12,29 @@
 
 <style>
 
+    body {
+        font-family: arial, sans-serif;
+        background-color: mediumaquamarine;
+    }
+
+    h1 {
+        color: oldlace;
+        text-shadow: 3px 3px #0e326d;
+    }
+
     #output div div {
-        width: 30px;
-        height: 30px;
-        line-height: 30px;
-        background-color: yellow;
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        background-color:khaki;
         display: inline-block;
         padding: 3px;
         margin: 3px;
         border-radius: 10px;
+        text-align: center;
+    }
+
+    #main {
         text-align: center;
     }
 
@@ -30,15 +44,22 @@
 
 <body>
 
-<h2> L I N G O </h2>
+<div id="main">
 
-<p>Raad het woord:</p> 
+    <h1> L I N G O </h1>
 
-<input type="text" name="woord" maxlength="5" id="woord">
-<button id="raadButton">Raad!</button>
+    <p>Raad het woord:</p>
 
-<div id="output"></div>
+    <input type="text" name="woord" maxlength="5" id="woord" autocomplete="off">
+    <button id="raadButton">Raad!</button>
 
+    <br>
+    <br>
+
+    <div id="output"></div>
+    <div id="resultText"></div>
+
+</div>
 
 </body>
 
