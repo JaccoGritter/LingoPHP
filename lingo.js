@@ -1,9 +1,11 @@
 window.onload = function() {
-    document.getElementById("raadButton").addEventListener("click", raadWoord);
+    //document.getElementById("raadButton").addEventListener("click", raadWoord);
 
     document.getElementById("woord").addEventListener('keypress', function (e) {
         if (e.key === 'Enter') raadWoord();
         });
+
+    document.getElementById("woord").focus();
 
     buildGrid(5);
     startSpel();

@@ -43,6 +43,23 @@ session_start();
         text-align: center;
     }
 
+    input[type=text] {
+        color: white;
+        font-size: 1.6rem;
+        letter-spacing: 0.7rem;
+        text-align: center;
+        width: 200px;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 2px solid white;
+        border-radius: 6px;
+        box-sizing: border-box;
+        background-color: mediumaquamarine;
+    }
+
+    
+
 </style>
 
 </head>
@@ -55,14 +72,12 @@ session_start();
 
     <h3>Raad het woord:</h3>
 
-    <input type="text" name="woord" maxlength="5" id="woord" autocomplete="off">
-    <button id="raadButton">Raad!</button>
-
-    <br>
-    <br>
+    
+    <!-- <button id="raadButton">Raad!</button> -->
 
     <div id="output"></div>
     <div id="resultText"></div>
+    <input type="text" name="woord" maxlength="5" id="woord" autocomplete="off">
 
 </div>
 
