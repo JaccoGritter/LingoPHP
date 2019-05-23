@@ -36,7 +36,7 @@ session_start();
         padding: 3px;
         margin: 3px;
         border-radius: 12px;
-        text-align: center;
+       // text-align: center;
     }
 
     #main {

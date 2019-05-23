@@ -41,6 +41,8 @@ function updateScreen(feedback, geraden, turns, gameOver, won) {
     let ballrow = document.getElementById("output").childNodes;
     let column = ballrow[turns-1].childNodes;
 
+    ballrow[turns-1].style.marginBottom = "6px";  // need to add margin to prevent rows from moving
+
     for (let i = 0; i < 5; i++) {
         let status = feedback.charAt(i);
         column[i].innerText = geraden.charAt(i);
@@ -53,7 +55,6 @@ function updateScreen(feedback, geraden, turns, gameOver, won) {
         
     }
     if (gameOver & won == false) {
-        //console.log(getWoord());
         document.getElementById("resultText").innerHTML = "<h3> Game Over... </h3>";
     }
 }
