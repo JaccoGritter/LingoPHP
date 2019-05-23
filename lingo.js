@@ -1,8 +1,13 @@
 window.onload = function() {
     document.getElementById("raadButton").addEventListener("click", raadWoord);
+
+    document.getElementById("woord").addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') raadWoord();
+        });
+
     buildGrid(5);
     startSpel();
-}
+    
 
 function buildGrid(n) {
     for(let i = 0; i < n; i++) {
@@ -57,4 +62,6 @@ function updateScreen(feedback, geraden, turns, gameOver, won) {
     if (gameOver & won == false) {
         document.getElementById("resultText").innerHTML = "<h3> Game Over... </h3>";
     }
+}
+
 }
