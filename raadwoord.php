@@ -9,6 +9,7 @@
     $myObj->won = false;
     $myObj->turns = 0;
     $myObj->feedback = "00000";
+    $myObj->score = 0;
 
 
     // put the teRadenWoord in an array for easier comparison with geraden woord
@@ -51,8 +52,10 @@
     $feedback = join($feedbackArray); 
     
     if ($feedback == "22222") {
+        $_SESSION["score"] += 1;
         $myObj->gameOver = true;
         $myObj->won = true;
+        $myObj->score = $_SESSION["score"];
     }
 
     if ($_SESSION["beurt"] >= 5) $myObj->gameOver = true;

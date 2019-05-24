@@ -48,17 +48,23 @@ session_start();
         font-size: 1.6rem;
         letter-spacing: 0.7rem;
         text-align: center;
-        width: 200px;
+        width: 260px;
         padding: 12px 20px;
         margin: 8px 0;
-        display: inline-block;
+        /* display: inline-block; */
         border: 2px solid white;
         border-radius: 6px;
         box-sizing: border-box;
         background-color: mediumaquamarine;
     }
 
-    
+    #nextTurn {
+        display: inline-block;
+        width: 200px;
+        height: 20px;
+        background-color: yellow;
+    }
+
 
 </style>
 
@@ -76,8 +82,9 @@ session_start();
     <!-- <button id="raadButton">Raad!</button> -->
 
     <div id="output"></div>
-    <div id="resultText"></div>
     <input type="text" name="woord" maxlength="5" id="woord" autocomplete="off">
+    <div id="resultText"></div>
+    <div id="nextTurn">nogeens</div>
 
 </div>
 
