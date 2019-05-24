@@ -59,12 +59,20 @@ session_start();
     }
 
     #nextTurn {
-        display: inline-block;
+        /* display: inline-block; */
+        display: none;
         width: 200px;
         height: 20px;
         background-color: yellow;
     }
 
+    #playAgain {
+        /* display: inline-block; */
+        display: none;
+        width: 200px;
+        height: 20px;
+        background-color: yellow;
+    }
 
 </style>
 
@@ -76,7 +84,7 @@ session_start();
 
     <h1> L I N G O </h1>
 
-    <h3>Raad het woord:</h3>
+    <h3 id="score">Raad het woord:</h3>
 
     
     <!-- <button id="raadButton">Raad!</button> -->
@@ -84,7 +92,8 @@ session_start();
     <div id="output"></div>
     <input type="text" name="woord" maxlength="5" id="woord" autocomplete="off">
     <div id="resultText"></div>
-    <div id="nextTurn">nogeens</div>
+    <div id="nextTurn">volgende ronde</div>
+    <div id="playAgain">nieuwe ronde</div>
 
 </div>
 

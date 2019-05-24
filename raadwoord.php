@@ -9,7 +9,7 @@
     $myObj->won = false;
     $myObj->turns = 0;
     $myObj->feedback = "00000";
-    $myObj->score = 0;
+    $myObj->score = $_SESSION["score"];
 
 
     // put the teRadenWoord in an array for easier comparison with geraden woord

@@ -23,6 +23,11 @@ window.onload = function() {
     }
 
     function startSpel() {               // sets a random word, turns = 0
+        clearGrid();
+        document.getElementById("score").innerHTML = "Raad het woord";
+        document.getElementById("playAgain").style.display = "none";
+        document.getElementById("resultText").innerHTML = "";
+        document.getElementById("woord").focus();
         var xmlhttp = new XMLHttpRequest();
             xmlhttp.open("GET", "bedenkwoord.php", true);
             xmlhttp.send();
@@ -31,12 +36,13 @@ window.onload = function() {
     }
 
     function volgendeBeurt() {               // sets a random word, turns = 0
+        clearGrid();
+        document.getElementById("nextTurn").style.display = "none";
+        document.getElementById("resultText").innerHTML = "";
+        document.getElementById("woord").focus();
         var xmlhttp = new XMLHttpRequest();
             xmlhttp.open("GET", "bedenkwoord.php", true);
             xmlhttp.send();
-            xmlhttp.open("GET", "setscore.php", true);
-            xmlhttp.send();
-          
     }
 
     function raadWoord() {
@@ -78,14 +84,18 @@ window.onload = function() {
 
         }
 
+        document.getElementById("score").innerHTML = "Geraden woorden: " + myObj.score;
+
         if (myObj.won) {
             document.getElementById("resultText").innerHTML = "<h3>Geraden! Gefeliciteerd!</h3>";
             //document.getElementById("woord").setAttribute("placeholder", "lekker!");
             console.log(myObj.score);
+            document.getElementById("nextTurn").style.display = "inline-block";
         }
         if (myObj.gameOver & myObj.won == false) {
             document.getElementById("resultText").innerHTML = "<h3> Game Over... </h3>";
-            clearGrid();
+            //document.getElementById("nextTurn").style.display = "inline-block";
+            document.getElementById("playAgain").style.display = "inline-block";
         }
     }
 
@@ -94,8 +104,9 @@ window.onload = function() {
         });
 
     document.getElementById("nextTurn").addEventListener("click", volgendeBeurt);
+    document.getElementById("playAgain").addEventListener("click", startSpel );
 
-    document.getElementById("woord").focus();
+    //document.getElementById("woord").focus();
 
     buildGrid(5);
     startSpel();
