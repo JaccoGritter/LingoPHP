@@ -29,8 +29,15 @@ window.onload = function() {
         document.getElementById("resultText").innerHTML = "";
         document.getElementById("woord").focus();
         var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) { 
+                // to prevent failed loading of request
+            }
+        };
             xmlhttp.open("GET", "bedenkwoord.php", true);
             xmlhttp.send();
+        var xmlhttp = new XMLHttpRequest();
             xmlhttp.open("GET", "setscore.php", true);
             xmlhttp.send();
     }
@@ -51,7 +58,6 @@ window.onload = function() {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) { 
-                    //console.log(this.responseText); 
                     let myObj = JSON.parse(this.responseText);
                     updateScreen(myObj, geradenwoord);
                 }
@@ -62,10 +68,7 @@ window.onload = function() {
     }
 
     function updateScreen(myObj, geradenwoord) {
-        //myObj.feedback myObj.turns, myObj.gameOver, myObj.won
-        // let ballrow = document.getElementById("output").childNodes;
-        // let column = ballrow[myObj.turns-1].childNodes;
-        //let ballrow = document.getElementById("output");
+        
         let activerow = myObj.turns - 1;
         let activeBall = "";
         let status = "";
@@ -76,9 +79,7 @@ window.onload = function() {
             status = myObj.feedback.charAt(i);
             activeBall = "cell" + activerow + i;
             document.getElementById(activeBall).innerText = geradenwoord.charAt(i);
-            //column[i].innerText = geradenwoord.charAt(i);
-            // if (status == "1" ) column[i].style.backgroundColor = "#ffb50a";
-            // if (status == "2" ) column[i].style.backgroundColor = "#bdf22e";
+        
             if (status == "1" ) document.getElementById(activeBall).style.backgroundColor = "#ffb50a";
             if (status == "2" ) document.getElementById(activeBall).style.backgroundColor = "#bdf22e";
 
@@ -88,13 +89,11 @@ window.onload = function() {
 
         if (myObj.won) {
             document.getElementById("resultText").innerHTML = "<h3>Geraden! Gefeliciteerd!</h3>";
-            //document.getElementById("woord").setAttribute("placeholder", "lekker!");
-            console.log(myObj.score);
+           
             document.getElementById("nextTurn").style.display = "inline-block";
         }
         if (myObj.gameOver & myObj.won == false) {
             document.getElementById("resultText").innerHTML = "<h3> Game Over... </h3>";
-            //document.getElementById("nextTurn").style.display = "inline-block";
             document.getElementById("playAgain").style.display = "inline-block";
         }
     }
@@ -105,8 +104,6 @@ window.onload = function() {
 
     document.getElementById("nextTurn").addEventListener("click", volgendeBeurt);
     document.getElementById("playAgain").addEventListener("click", startSpel );
-
-    //document.getElementById("woord").focus();
 
     buildGrid(5);
     startSpel();
