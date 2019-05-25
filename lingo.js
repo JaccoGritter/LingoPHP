@@ -54,17 +54,18 @@ window.onload = function() {
 
     function raadWoord() {
         var geradenwoord = document.getElementById("woord").value;
-        document.getElementById("woord").value = "";
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) { 
-                    let myObj = JSON.parse(this.responseText);
-                    updateScreen(myObj, geradenwoord);
-                }
-            };
-            xmlhttp.open("GET", "raadwoord.php?q=" + geradenwoord, true);
-            xmlhttp.send();
-        
+        if (woordokay(geradenwoord)) {
+            document.getElementById("woord").value = "";
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) { 
+                        let myObj = JSON.parse(this.responseText);
+                        updateScreen(myObj, geradenwoord);
+                    }
+                };
+                xmlhttp.open("GET", "raadwoord.php?q=" + geradenwoord, true);
+                xmlhttp.send();
+            }
     }
 
     function updateScreen(myObj, geradenwoord) {
@@ -95,6 +96,25 @@ window.onload = function() {
         if (myObj.gameOver & myObj.won == false) {
             document.getElementById("resultText").innerHTML = "<h3> Game Over... </h3>";
             document.getElementById("playAgain").style.display = "inline-block";
+        }
+    }
+
+    function woordokay(geradenwoord) {
+        // more validation te be added    
+        if (geradenwoord.length == 5 && checkIfAllCharactersValid(geradenwoord)) {
+                return true;
+            } else {
+        return false;
+            }
+
+        function checkIfAllCharactersValid(geradenwoord) {
+            for (let i=0; i<geradenwoord.length; i++) {
+                //console.log( (geradenwoord.charAt(i).match(/[a-z]/i)) == null );
+                if ( (geradenwoord.charAt(i).match(/[a-z]/i)) == null ) {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 
