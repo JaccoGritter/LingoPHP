@@ -44,6 +44,7 @@ session_start();
     }
 
     input[type=text] {
+        
         color: white;
         font-size: 1.6rem;
         letter-spacing: 0.7rem;
@@ -58,20 +59,23 @@ session_start();
         background-color: mediumaquamarine;
     }
 
-    #nextTurn {
+    input:focus{
+    outline: none;
+}
+
+    #nextTurn, #playAgain {
         /* display: inline-block; */
+        color: black;
         display: none;
         width: 200px;
-        height: 20px;
-        background-color: yellow;
+        height: 35px;
+        line-height: 35px;
+        border-radius: 12px;
+        background-color: khaki;
     }
 
-    #playAgain {
-        /* display: inline-block; */
-        display: none;
-        width: 200px;
-        height: 20px;
-        background-color: yellow;
+    #nextTurn:hover, #playAgain:hover {
+        color: white;
     }
 
 </style>
@@ -92,8 +96,8 @@ session_start();
     <div id="output"></div>
     <input type="text" name="woord" maxlength="5" id="woord" autocomplete="off">
     <div id="resultText"></div>
-    <div id="nextTurn">volgende ronde</div>
-    <div id="playAgain">nieuwe ronde</div>
+    <div id="nextTurn">volgende beurt</div>
+    <div id="playAgain">Start nieuw spel!</div>
 
 </div>
 
