@@ -36,7 +36,6 @@ session_start();
         padding: 3px;
         margin: 3px;
         border-radius: 12px;
-       // text-align: center;
     }
 
     #main {
@@ -94,7 +93,7 @@ session_start();
     <!-- <button id="raadButton">Raad!</button> -->
 
     <div id="output"></div>
-    <input type="text" name="woord" maxlength="5" id="woord" autocomplete="off">
+    <div id="woordinput"><input type="text" name="woord" maxlength="5" id="woord" autocomplete="off"></div>
     <div id="resultText"></div>
     <div id="nextTurn">volgende beurt</div>
     <div id="playAgain">Start nieuw spel!</div>

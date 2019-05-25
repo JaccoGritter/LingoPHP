@@ -1,5 +1,4 @@
 window.onload = function() {
-        //document.getElementById("raadButton").addEventListener("click", raadWoord);
 
     function buildGrid(n) {
         for (let i = 0; i < n; i++) {
@@ -27,6 +26,7 @@ window.onload = function() {
         document.getElementById("score").innerHTML = "Raad het woord";
         document.getElementById("playAgain").style.display = "none";
         document.getElementById("resultText").innerHTML = "";
+        document.getElementById("woordinput").style.display = "block";
         document.getElementById("woord").focus();
         var xmlhttp = new XMLHttpRequest();
 
@@ -46,6 +46,7 @@ window.onload = function() {
         clearGrid();
         document.getElementById("nextTurn").style.display = "none";
         document.getElementById("resultText").innerHTML = "";
+        document.getElementById("woordinput").style.display = "block";
         document.getElementById("woord").focus();
         var xmlhttp = new XMLHttpRequest();
             xmlhttp.open("GET", "bedenkwoord.php", true);
@@ -89,11 +90,12 @@ window.onload = function() {
         document.getElementById("score").innerHTML = "Geraden woorden: " + myObj.score;
 
         if (myObj.won) {
+            document.getElementById("woordinput").style.display = "none";
             document.getElementById("resultText").innerHTML = "<h3>Geraden! Gefeliciteerd!</h3>";
-           
             document.getElementById("nextTurn").style.display = "inline-block";
         }
         if (myObj.gameOver & myObj.won == false) {
+            document.getElementById("woordinput").style.display = "none";
             document.getElementById("resultText").innerHTML = "<h3> Game Over... </h3>";
             document.getElementById("playAgain").style.display = "inline-block";
         }
@@ -109,7 +111,6 @@ window.onload = function() {
 
         function checkIfAllCharactersValid(geradenwoord) {
             for (let i=0; i<geradenwoord.length; i++) {
-                //console.log( (geradenwoord.charAt(i).match(/[a-z]/i)) == null );
                 if ( (geradenwoord.charAt(i).match(/[a-z]/i)) == null ) {
                     return false;
                 }
