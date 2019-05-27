@@ -8,8 +8,8 @@ To do:
 
 * Use an API or dictonary to get the words
 
-* Improve styling of input
+<strike>Improve styling of input</strike> - DONE
 
 * clean up code in raadwoord.php
 
-* add score counter
+<strike>add score counter</strike>
