@@ -22,9 +22,6 @@
     $feedback = "00000";
     $feedbackArray = str_split($feedback);
 
-    // increase turns
-    $_SESSION["beurt"] += 1;
-
     // get $q from calling page (= geraden woord)
     $q = $_REQUEST["q"];
 
@@ -33,6 +30,9 @@
 
     //put letters of $q in an array named $qarray
     $qarray = str_split($q);
+
+    // increase turns
+    $_SESSION["beurt"] += 1;
 
     // check if teradenwoord contains letters from guessed word
     for ($i = 0; $i < 5; $i++) {
