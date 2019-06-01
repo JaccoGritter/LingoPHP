@@ -15,7 +15,7 @@
 
     // put the teRadenWoord in an array for easier comparison with geraden woord
     $teRadenWoordArray = str_split($_SESSION["teradenwoord"]);
-
+    
     // feedback will be the string to be sent back and represents check results
     // 0 = character not in word
     // 1 = character in word but not on right place
@@ -35,17 +35,18 @@
     // increase turns
     $_SESSION["beurt"] += 1;
 
-    // check if teradenwoord contains letters from guessed word
-    for ($i = 0; $i < 5; $i++) {
-        for ($j = 0; $j < 5; $j++) {
-            if ($qarray[$i] == $teRadenWoordArray[$j]) $feedbackArray[$i] = "1"; 
+    // check if teradenwoord contains letters on right position
+    for ($i = 0; $i < 5; $i++) { 
+        if ($qarray[$i] == $teRadenWoordArray[$i]) {
+            $feedbackArray[$i] = "2";
+            $teRadenWoordArray[$i] = "*";
         }
     }
 
-    // check if teradenwoord contains letters on right position
+    // check if teradenwoord contains letters from guessed word
     for ($i = 0; $i < 5; $i++) {
-        for ($i = 0; $i < 5; $i++) { 
-            if ($qarray[$i] == $teRadenWoordArray[$i]) $feedbackArray[$i] = "2";
+        for ($j = 0; $j < 5; $j++) {
+            if ($qarray[$i] == $teRadenWoordArray[$j] && $feedbackArray[$i] != "2") $feedbackArray[$i] = "1"; 
         }
     }
     
