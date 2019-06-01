@@ -25,7 +25,7 @@ window.onload = function() {
         clearGrid();
         document.getElementById("score").innerHTML = "Raad het woord";
         document.getElementById("playAgain").style.display = "none";
-        document.getElementById("resultText").innerHTML = "";
+        document.getElementById("resultText").style.display = "none";
         document.getElementById("woordinput").style.display = "block";
         document.getElementById("woord").focus();
         var xmlhttp = new XMLHttpRequest();
@@ -96,7 +96,8 @@ window.onload = function() {
         }
         if (myObj.gameOver & myObj.won == false) {
             document.getElementById("woordinput").style.display = "none";
-            document.getElementById("resultText").innerHTML = "<h3> Game Over... </h3>";
+            document.getElementById("resultText").innerHTML = "Game Over... Het woord was <em>" + myObj.teRadenWoord + "</em>";
+            document.getElementById("resultText").style.display = "inline-block";
             document.getElementById("playAgain").style.display = "inline-block";
         }
     }

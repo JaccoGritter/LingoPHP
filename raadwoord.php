@@ -10,6 +10,7 @@
     $myObj->turns = 0;
     $myObj->feedback = "00000";
     $myObj->score = $_SESSION["score"];
+    $myObj->teRadenWoord = "";   // will only be defined if turns == 5 && won == false
 
 
     // put the teRadenWoord in an array for easier comparison with geraden woord
@@ -58,7 +59,10 @@
         $myObj->score = $_SESSION["score"];
     }
 
-    if ($_SESSION["beurt"] >= 5) $myObj->gameOver = true;
+    if ($_SESSION["beurt"] >= 5) {
+        $myObj->gameOver = true;
+        $myObj->teRadenWoord = $_SESSION["teradenwoord"];
+    }
 
     $myObj->feedback = $feedback;
     $myObj->turns = $_SESSION["beurt"];
