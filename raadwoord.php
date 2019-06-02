@@ -35,7 +35,7 @@
     // increase turns
     $_SESSION["beurt"] += 1;
 
-    // check if teradenwoord contains letters on right position
+    // check if teradenwoord contains letters from guessed word on right position
     for ($i = 0; $i < 5; $i++) { 
         if ($qarray[$i] == $teRadenWoordArray[$i]) {
             $feedbackArray[$i] = "2";
@@ -43,10 +43,13 @@
         }
     }
 
-    // check if teradenwoord contains letters from guessed word
+    // check if teradenwoord contains letters from guessed word on other position
     for ($i = 0; $i < 5; $i++) {
         for ($j = 0; $j < 5; $j++) {
-            if ($qarray[$i] == $teRadenWoordArray[$j] && $feedbackArray[$i] != "2") $feedbackArray[$i] = "1"; 
+            if ($qarray[$i] == $teRadenWoordArray[$j] && $feedbackArray[$i] != "2") {
+                $feedbackArray[$i] = "1"; 
+                $teRadenWoordArray[$j] = "*";
+            }
         }
     }
     
