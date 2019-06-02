@@ -1,23 +1,23 @@
-window.onload = function() {
+$(document).ready(function () {
 
     function buildGrid(n) {
         for (let i = 0; i < n; i++) {
             let row = document.createElement("div");
-            for(let j = 0; j < n; j++) {
+            for (let j = 0; j < n; j++) {
                 let cell = document.createElement("div");
-                row.appendChild(cell).setAttribute("id", "cell" + i + j );
+                row.appendChild(cell).setAttribute("id", "cell" + i + j);
             }
             document.getElementById("output").appendChild(row).setAttribute("id", "row" + i);
         }
     }
 
     function clearGrid() {
-        for (let i = 0; i < 5; i++){
+        for (let i = 0; i < 5; i++) {
             for (let j = 0; j < 5; j++) {
                 document.getElementById("cell" + i + j).innerText = " ";
                 document.getElementById("cell" + i + j).style.backgroundColor = "khaki";
             }
-            document.getElementById("row" + i).style.marginBottom = "1px";  
+            document.getElementById("row" + i).style.marginBottom = "1px";
         }
     }
 
@@ -28,18 +28,9 @@ window.onload = function() {
         document.getElementById("resultText").style.display = "none";
         document.getElementById("woordinput").style.display = "block";
         document.getElementById("woord").focus();
-        var xmlhttp = new XMLHttpRequest();
 
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) { 
-                // to prevent failed loading of request
-            }
-        };
-            xmlhttp.open("GET", "bedenkwoord.php", true);
-            xmlhttp.send();
-        var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET", "setscore.php", true);
-            xmlhttp.send();
+        $.get("bedenkwoord.php");
+        $.get("setscore.php");
     }
 
     function volgendeBeurt() {               // sets a random word, turns = 0
@@ -48,29 +39,25 @@ window.onload = function() {
         document.getElementById("resultText").innerHTML = "";
         document.getElementById("woordinput").style.display = "block";
         document.getElementById("woord").focus();
-        var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET", "bedenkwoord.php", true);
-            xmlhttp.send();
+
+        $.get("bedenkwoord.php");
     }
 
     function raadWoord() {
         var geradenwoord = document.getElementById("woord").value;
         if (woordokay(geradenwoord)) {
             document.getElementById("woord").value = "";
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) { 
-                        let myObj = JSON.parse(this.responseText);
-                        updateScreen(myObj, geradenwoord);
-                    }
-                };
-                xmlhttp.open("GET", "raadwoord.php?q=" + geradenwoord, true);
-                xmlhttp.send();
-            }
+            $.post("raadwoord.php", { q: geradenwoord }, function (data, status) {
+                let myObj = JSON.parse(data);
+                updateScreen(myObj, geradenwoord);
+
+            });
+
+        }
     }
 
     function updateScreen(myObj, geradenwoord) {
-        
+
         let activerow = myObj.turns - 1;
         let activeBall = "";
         let status = "";
@@ -81,9 +68,9 @@ window.onload = function() {
             status = myObj.feedback.charAt(i);
             activeBall = "cell" + activerow + i;
             document.getElementById(activeBall).innerText = geradenwoord.charAt(i);
-        
-            if (status == "1" ) document.getElementById(activeBall).style.backgroundColor = "#ffb50a";
-            if (status == "2" ) document.getElementById(activeBall).style.backgroundColor = "#bdf22e";
+
+            if (status == "1") document.getElementById(activeBall).style.backgroundColor = "#ffb50a";
+            if (status == "2") document.getElementById(activeBall).style.backgroundColor = "#bdf22e";
 
         }
 
@@ -105,14 +92,14 @@ window.onload = function() {
     function woordokay(geradenwoord) {
         // more validation te be added    
         if (geradenwoord.length == 5 && checkIfAllCharactersValid(geradenwoord)) {
-                return true;
-            } else {
-        return false;
-            }
+            return true;
+        } else {
+            return false;
+        }
 
         function checkIfAllCharactersValid(geradenwoord) {
-            for (let i=0; i<geradenwoord.length; i++) {
-                if ( (geradenwoord.charAt(i).match(/[a-z]/i)) == null ) {
+            for (let i = 0; i < geradenwoord.length; i++) {
+                if ((geradenwoord.charAt(i).match(/[a-z]/i)) == null) {
                     return false;
                 }
             }
@@ -122,13 +109,13 @@ window.onload = function() {
 
     document.getElementById("woord").addEventListener('keypress', function (e) {
         if (e.key === 'Enter') raadWoord();
-        });
+    });
 
     document.getElementById("nextTurn").addEventListener("click", volgendeBeurt);
-    document.getElementById("playAgain").addEventListener("click", startSpel );
+    document.getElementById("playAgain").addEventListener("click", startSpel);
 
     buildGrid(5);
     startSpel();
 
 
-}
+});
