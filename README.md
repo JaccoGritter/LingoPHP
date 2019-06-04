@@ -1,5 +1,7 @@
 <b> LINGO readme </b>
 
+Try it out at https://lingolingo.herokuapp.com/
+
 To do:
 
 <strike>Solve cells moving up slightly after submitting answer</strike> - DONE
