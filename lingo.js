@@ -84,7 +84,7 @@ $(document).ready(function () {
         }
         if (myObj.gameOver & myObj.won == false) {
             document.getElementById("woordinput").style.display = "none";
-            document.getElementById("resultText").innerHTML = "Game Over... Het woord was <em>" + myObj.teRadenWoord + "</em>";
+            document.getElementById("resultText").innerHTML = "Het woord was <em>" + myObj.teRadenWoord + "</em>";
             document.getElementById("resultText").style.display = "inline-block";
             document.getElementById("playAgain").style.display = "inline-block";
         }

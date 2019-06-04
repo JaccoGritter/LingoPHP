@@ -64,7 +64,7 @@ session_start();
 
     #resultText {
         display: none;
-        width: 450px;
+        width: 300px;
         height: 40px;
         line-height: 40px;
         border-radius: 12px;
