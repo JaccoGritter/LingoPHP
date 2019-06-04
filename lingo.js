@@ -58,6 +58,7 @@ $(document).ready(function () {
 
     function updateScreen(myObj, geradenwoord) {
 
+        geradenwoord = geradenwoord.toLowerCase();
         let activerow = myObj.turns - 1;
         let activeBall = "";
         let status = "";
